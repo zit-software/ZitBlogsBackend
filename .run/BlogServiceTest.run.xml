@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="BlogServiceTest" type="JUnit" factoryName="JUnit">
+    <module name="blog" />
+    <option name="PACKAGE_NAME" value="com.zit.blog.Blog" />
+    <option name="MAIN_CLASS_NAME" value="com.zit.blog.Blog.BlogServiceTest" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
