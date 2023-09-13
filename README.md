@@ -10,7 +10,7 @@ Tình hình là gần đây **ZIT Software** đang phát triển cho mình một
 
 Hiện tại phần **frontend** của tụi mình đã được deploy lên địa chỉ [https://zitblogs.vercel.app](https://zitblogs.vercel.app).
 
-Chúng mình cần các bạn clone project **backend** của chúng mình từ github về: [github.com/zit-software/ZitBlogsBackend](github.com/zit-software/ZitBlogsBackend) và viết thêm code vào các hàm bị bỏ trống trong các class `main.java.com.zit.blog.Auth.AuthService` và `main.java.com.zit.blog.Blog.BlogService` (ít thì 5 hàm nhiều thì 10 hàm).
+Chúng mình cần các bạn clone project **backend** của chúng mình từ github về: [https://github.com/zit-software/ZitBlogsBackend](https://github.com/zit-software/ZitBlogsBackend) và viết thêm code vào các hàm bị bỏ trống trong các class `main.java.com.zit.blog.Auth.AuthService` và `main.java.com.zit.blog.Blog.BlogService` (ít thì 5 hàm nhiều thì 10 hàm).
 
 ### AuthService
 
