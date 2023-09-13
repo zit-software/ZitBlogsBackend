@@ -28,6 +28,8 @@ Sau khi đã hoàn thành các hàm trên, các bạn sẽ chạy file test đ�
 
 ![](https://mermaid.ink/img/pako:eNqVkbFuAjEMhl8l8gwvkK0VK12qblmsi--IlEuQ4xSh494dQ0A99RbwEvt3ZH32P0GXPYEF4l3AgXF0yWj8FGJzuWy3eTKfMQ_WVFVcWnSnlt8iJDHB_9VFOKTB9DXGLxxp1aARQ1yp-IuCvJKPWMop82L8DoVMx6SP_5B_ej36ppvWmJ_QtzVegJYgcU3c5SSU5F2GBQJsYCTWxb1e-47hQA6k1wGrqaceaxQHLs36Favk73PqwApX2kCb-LAIbI-xqEo-SOZ9c_Bu5HwF0-aPEw?type=png)
 
+> Lưu ý: Không chỉnh sửa hoặc xóa những đoạn code không nằm trong hướng dẫn!
+
 ## Hướng dẫn chi tiết
 
 ### Clone repo

@@ -5,13 +5,10 @@ import com.zit.blog.Blog.DTO.UpdateBlogDTO;
 import com.zit.blog.User.User;
 import com.zit.blog.config.exception.CustomException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
