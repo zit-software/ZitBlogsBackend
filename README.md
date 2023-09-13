@@ -42,6 +42,9 @@ git clone https://github.com/zit-software/ZitBlogsBackend
 
 Sau khi đã clone project về, các bạn sử dụng một **Intelj** để mở project này lên
 
+Trong thư mục `src/main/resources`:
+- Sao chép file `application.properties.example` thành `application.properties`
+
 ![](https://i.ibb.co/gVngfN4/Screenshot-from-2023-09-12-19-32-03.png)
 
 Các bạn đợi **Intelj** tự động cài xong các thư viện thì có thể chạy dự án này lên bằng cách nhấn vào nút "play" ở góc trên bên phải IDE.
