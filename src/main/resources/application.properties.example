@@ -19,7 +19,7 @@ springdoc.swagger-ui.path=/swagger-ui.html
 # ===============================
 # TESTING
 # ===============================
-app.blog.test.judge-server=http://localhost:5000
+app.blog.test.judge-server=http://spring-workshop-judge.koreacentral.cloudapp.azure.com:5000
 # ===============================
 # WORKSHOP
 # ===============================
