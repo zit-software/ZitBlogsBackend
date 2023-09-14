@@ -28,6 +28,7 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
     @Autowired
     private TestingConfiguration testingConfiguration;
     private String macAddress;
+    private Long testId;
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
@@ -36,6 +37,9 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
         store.put(ALL_TESTS_PASSED_KEY, allTestsPassed);
         testTaker = testingConfiguration.getTestTaker();
         judgeServerURL = testingConfiguration.getJudgeServerURL();
+
+        Test test = restTemplate.postForObject(judgeServerURL + "/tests", new Test(null, testTaker, "", new Date(), new Date()), Test.class);
+        testId = test.getId();
 
         Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
 
@@ -67,7 +71,7 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
             System.out.println("All tests have succeeded. Saving your record...");
             try {
                 AddRecordResponse record = restTemplate.postForObject(judgeServerURL + "/records",
-                        new Record(null, testTaker, new Date(), macAddress), AddRecordResponse.class);
+                        new Record(null, testTaker, testId, new Date(), macAddress), AddRecordResponse.class);
                 assert record != null;
                 System.out.println(record.getName() + " has completed all tasks.");
             } catch (Exception e) {
