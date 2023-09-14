@@ -22,13 +22,13 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
     private boolean allTestsPassed = true;
     private static int successTestModuleCount = 0;
     private static final int testModuleSize = 2;
+    private static Long testId;
     private String testTaker;
     private String judgeServerURL;
     private final RestTemplate restTemplate = new RestTemplate();
     @Autowired
     private TestingConfiguration testingConfiguration;
     private String macAddress;
-    private Long testId;
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
@@ -38,8 +38,10 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
         testTaker = testingConfiguration.getTestTaker();
         judgeServerURL = testingConfiguration.getJudgeServerURL();
 
-        Test test = restTemplate.postForObject(judgeServerURL + "/tests", new Test(null, testTaker, "", new Date(), new Date()), Test.class);
-        testId = test.getId();
+        if (testId == null) {
+            AddTestRecordResponse test = restTemplate.postForObject(judgeServerURL + "/tests", new TestRecord(null, testTaker, "", new Date(), new Date()), AddTestRecordResponse.class);
+            testId = test.getId();
+        }
 
         Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
 
@@ -64,7 +66,9 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
     public void afterAll(ExtensionContext context) throws Exception {
         Store store = getStore(context);
         Boolean allTestsPassedValue = store.get(ALL_TESTS_PASSED_KEY, Boolean.class);
-        successTestModuleCount++;
+        if (allTestsPassed) {
+            successTestModuleCount++;
+        }
 
         if (allTestsPassedValue != null && allTestsPassedValue && successTestModuleCount == testModuleSize) {
             // Execute your code only if all tests have succeeded

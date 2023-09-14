@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
-public class Test {
+public class TestRecord {
     private Long id;
     private String name;
     private String status;
