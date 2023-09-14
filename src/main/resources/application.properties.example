@@ -1,4 +1,8 @@
 # ===============================
+# TESTING
+# ===============================
+app.blog.test.judge-server=http://spring-workshop-judge.koreacentral.cloudapp.azure.com:5000
+# ===============================
 # APPLICATION
 # ===============================
 logging.level.org.springframework.security.web.FilterChainProxy=DEBUG
@@ -16,10 +20,6 @@ spring.jpa.properties.hibernate.format_sql=false
 # DOCUMENTATION
 # ===============================
 springdoc.swagger-ui.path=/swagger-ui.html
-# ===============================
-# TESTING
-# ===============================
-app.blog.test.judge-server=http://spring-workshop-judge.koreacentral.cloudapp.azure.com:5000
 # ===============================
 # WORKSHOP
 # ===============================
