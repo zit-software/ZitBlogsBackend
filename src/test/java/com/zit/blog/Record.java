@@ -11,4 +11,5 @@ public class Record {
     private Long id;
     private String name;
     private Date time;
+    private String macAddress;
 }

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.NetworkInterface;
 import java.util.Date;
+import java.util.Enumeration;
 
 @Component
 public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, AfterTestExecutionCallback, AfterAllCallback {
@@ -25,6 +27,7 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
     private final RestTemplate restTemplate = new RestTemplate();
     @Autowired
     private TestingConfiguration testingConfiguration;
+    private String macAddress;
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
@@ -33,6 +36,17 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
         store.put(ALL_TESTS_PASSED_KEY, allTestsPassed);
         testTaker = testingConfiguration.getTestTaker();
         judgeServerURL = testingConfiguration.getJudgeServerURL();
+
+        Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+
+        byte[] hardwareAddress = networkInterfaces.nextElement().getHardwareAddress();
+
+        String[] hexadecimalFormat = new String[hardwareAddress.length];
+        for (int i = 0; i < hardwareAddress.length; i++) {
+            hexadecimalFormat[i] = String.format("%02X", hardwareAddress[i]);
+        }
+
+        this.macAddress = String.join(":", hexadecimalFormat);
     }
 
     @Override
@@ -53,7 +67,7 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
             System.out.println("All tests have succeeded. Saving your record...");
             try {
                 AddRecordResponse record = restTemplate.postForObject(judgeServerURL + "/record",
-                        new Record(null, testTaker, new Date()), AddRecordResponse.class);
+                        new Record(null, testTaker, new Date(), macAddress), AddRecordResponse.class);
                 assert record != null;
                 System.out.println(record.getName() + " has completed all tasks.");
             } catch (Exception e) {
