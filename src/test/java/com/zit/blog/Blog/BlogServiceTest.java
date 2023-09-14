@@ -82,14 +82,14 @@ public class BlogServiceTest {
     }
 
     @Test
-    @DisplayName("Get All Blogs Should Return Mocked Blogs")
+    @DisplayName("Get all blogs should return mocked blogs")
     void getAllBlogsShouldReturnMockedBlogs() {
         List<Blog> allBlogs = underTest.getAllBlogs();
         assertThat(allBlogs).contains(mockedBlog1, mockedBlog2);
     }
 
     @Test
-    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
+    @DisplayName("Get blog by id should throw exception when blog id not found")
     void createNewBlog() {
         CreateBlogDTO createBlogDTO = new CreateBlogDTO("Mocked Create Blog", "Mocked Create Block Content");
         Blog blog = underTest.createNewBlog(createBlogDTO);
@@ -103,7 +103,7 @@ public class BlogServiceTest {
     }
 
     @Test
-    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
+    @DisplayName("Update blog should throw exception when blog id not found")
     void updateBlogShouldThrowExceptionWhenBlogIdNotFound() {
         assertThatExceptionOfType(CustomException.class)
                 .isThrownBy(() -> {
@@ -113,7 +113,7 @@ public class BlogServiceTest {
     }
 
     @Test
-    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
+    @DisplayName("Update blocked when different user try to update")
     void updateBlockedWhenDifferentUserTryToUpdate() {
         UpdateBlogDTO updateBlogDTO = new UpdateBlogDTO("Mocked Blog Updated", "Mocked Blog Content Updated");
         assertThatExceptionOfType(CustomException.class)
@@ -124,7 +124,7 @@ public class BlogServiceTest {
     }
 
     @Test
-    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
+    @DisplayName("Update blog should update current blog")
     void updateBlogShouldUpdateCurrentBlog() {
         UpdateBlogDTO updateBlogDTO = new UpdateBlogDTO("Mocked Blog Updated", "Mocked Blog Content Updated");
         try {
@@ -138,7 +138,7 @@ public class BlogServiceTest {
     }
 
     @Test
-    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
+    @DisplayName("Should delete blog")
     void deleteBlog() {
         underTest.deleteBlog(mockedBlog1.getId());
         List<Blog> allBlogs = blogRepository.findAll();
