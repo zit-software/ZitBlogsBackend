@@ -66,7 +66,9 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
     public void afterAll(ExtensionContext context) throws Exception {
         Store store = getStore(context);
         Boolean allTestsPassedValue = store.get(ALL_TESTS_PASSED_KEY, Boolean.class);
-        successTestModuleCount++;
+        if (allTestsPassed) {
+            successTestModuleCount++;
+        }
 
         if (allTestsPassedValue != null && allTestsPassedValue && successTestModuleCount == testModuleSize) {
             // Execute your code only if all tests have succeeded
