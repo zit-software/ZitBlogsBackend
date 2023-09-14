@@ -7,10 +7,10 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
-public class Record {
+public class Test {
     private Long id;
     private String name;
-    private Long testId;
+    private String status;
     private Date createdAt;
-    private String macAddress;
+    private Date updatedAt;
 }
