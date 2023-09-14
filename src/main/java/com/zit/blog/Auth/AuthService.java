@@ -11,6 +11,8 @@ import jakarta.xml.bind.DatatypeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,15 +42,22 @@ public class AuthService {
          * 2. Sử dụng `passwordEncoder.matches` để kiểm tra mật khẩu có có khớp không
          */
 
+        User user = userRepository.findByEmail(loginDTO.getEmail()).orElseThrow(
+                () -> new CustomException("Email không tồn tại", HttpStatus.UNAUTHORIZED)
+        );
+
+        if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+            throw new CustomException("Mật khẩu không đúng", HttpStatus.UNAUTHORIZED);
+        }
 
         Map<String, String> responseMap = new HashMap<>();
 
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(loginDTO.getEmail(),
-//                loginDTO.getPassword());
-//        authenticationManager.authenticate(authentication);
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        String accessToken = jwtService.signAccessToken(null, user);
-//        responseMap.put("accessToken", accessToken);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(loginDTO.getEmail(),
+                loginDTO.getPassword());
+        authenticationManager.authenticate(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String accessToken = jwtService.signAccessToken(null, user);
+        responseMap.put("accessToken", accessToken);
 
         return responseMap;
     }
