@@ -3,7 +3,7 @@
     <module name="blog" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.zit.blog.*" />
+        <option name="PATTERN" value="com.zit.blog.Test" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
