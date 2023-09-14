@@ -66,7 +66,7 @@ public class AfterAllIfAllTestsSucceededExtension implements BeforeAllCallback, 
             // Execute your code only if all tests have succeeded
             System.out.println("All tests have succeeded. Saving your record...");
             try {
-                AddRecordResponse record = restTemplate.postForObject(judgeServerURL + "/record",
+                AddRecordResponse record = restTemplate.postForObject(judgeServerURL + "/records",
                         new Record(null, testTaker, new Date(), macAddress), AddRecordResponse.class);
                 assert record != null;
                 System.out.println(record.getName() + " has completed all tasks.");
