@@ -8,6 +8,7 @@ import com.zit.blog.User.UserRepository;
 import com.zit.blog.config.exception.CustomException;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 @Transactional
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(AfterAllIfAllTestsSucceededExtension.class)
+@DisplayName("Blog Service Test")
 public class BlogServiceTest {
     @Autowired
     BlogRepository blogRepository;
@@ -80,12 +82,14 @@ public class BlogServiceTest {
     }
 
     @Test
+    @DisplayName("Get All Blogs Should Return Mocked Blogs")
     void getAllBlogsShouldReturnMockedBlogs() {
         List<Blog> allBlogs = underTest.getAllBlogs();
         assertThat(allBlogs).contains(mockedBlog1, mockedBlog2);
     }
 
     @Test
+    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
     void createNewBlog() {
         CreateBlogDTO createBlogDTO = new CreateBlogDTO("Mocked Create Blog", "Mocked Create Block Content");
         Blog blog = underTest.createNewBlog(createBlogDTO);
@@ -99,6 +103,7 @@ public class BlogServiceTest {
     }
 
     @Test
+    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
     void updateBlogShouldThrowExceptionWhenBlogIdNotFound() {
         assertThatExceptionOfType(CustomException.class)
                 .isThrownBy(() -> {
@@ -108,6 +113,7 @@ public class BlogServiceTest {
     }
 
     @Test
+    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
     void updateBlockedWhenDifferentUserTryToUpdate() {
         UpdateBlogDTO updateBlogDTO = new UpdateBlogDTO("Mocked Blog Updated", "Mocked Blog Content Updated");
         assertThatExceptionOfType(CustomException.class)
@@ -118,6 +124,7 @@ public class BlogServiceTest {
     }
 
     @Test
+    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
     void updateBlogShouldUpdateCurrentBlog() {
         UpdateBlogDTO updateBlogDTO = new UpdateBlogDTO("Mocked Blog Updated", "Mocked Blog Content Updated");
         try {
@@ -131,6 +138,7 @@ public class BlogServiceTest {
     }
 
     @Test
+    @DisplayName("Get Blog By Id Should Throw Exception When Blog Id Not Found")
     void deleteBlog() {
         underTest.deleteBlog(mockedBlog1.getId());
         List<Blog> allBlogs = blogRepository.findAll();

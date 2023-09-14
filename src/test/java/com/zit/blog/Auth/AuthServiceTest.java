@@ -8,6 +8,7 @@ import com.zit.blog.config.exception.CustomException;
 import io.jsonwebtoken.Claims;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 @Transactional
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(AfterAllIfAllTestsSucceededExtension.class)
+@DisplayName("Auth Service Test")
 public class AuthServiceTest {
     @Autowired
     AuthService underTest;
@@ -46,6 +48,7 @@ public class AuthServiceTest {
     }
 
     @Test
+    @DisplayName("Authenticate should throw error when email not found")
     public void authenticateShouldThrowErrorWhenEmailNotFound() {
         LoginDTO loginDTO = new LoginDTO("notFoundEmail@gmail.com", "");
         assertThatExceptionOfType(CustomException.class).isThrownBy(() -> {
@@ -54,6 +57,7 @@ public class AuthServiceTest {
     }
 
     @Test
+    @DisplayName("Authenticate should throw error when wrong password")
     public void authenticateShouldThrowErrorWhenWrongPassword() {
         LoginDTO loginDTO = new LoginDTO(user.getEmail(), "12345");
         assertThatExceptionOfType(CustomException.class).isThrownBy(() -> {
@@ -62,6 +66,7 @@ public class AuthServiceTest {
     }
 
     @Test
+    @DisplayName("Authenticate should add security context")
     public void authenticateShouldAddSecurityContext() {
         LoginDTO loginDTO = new LoginDTO(user.getEmail(), password);
         try {
@@ -72,6 +77,7 @@ public class AuthServiceTest {
     }
 
     @Test
+    @DisplayName("Authenticate should return access token")
     public void authenticateShouldReturnAccessToken() {
         LoginDTO loginDTO = new LoginDTO(user.getEmail(), password);
         try {
@@ -82,6 +88,7 @@ public class AuthServiceTest {
     }
 
     @Test
+    @DisplayName("Authenticate should return token with correct payload")
     public void authenticateShouldReturnTokenWithCorrectPayload() {
         LoginDTO loginDTO = new LoginDTO(user.getEmail(), password);
         try {
