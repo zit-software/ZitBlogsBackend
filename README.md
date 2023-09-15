@@ -24,7 +24,7 @@ Chúng mình cần các bạn clone project **backend** của chúng mình từ 
 - `updateBlog`: Cập nhật bài blog
 
 
-Sau khi đã hoàn thành các hàm trên, các bạn sẽ chạy file test để chấm điểm (`test.java.com.zit.blog.ServerApplicationTests`). Các bạn pass hết test case sớm nhất sẽ nhận được quà từ **ZIT**.
+Sau khi đã hoàn thành các hàm trên, các bạn sẽ chạy file test để chấm điểm (`test.java.com.zit.blog.ServerApplicationTests`). Các bạn pass hết test case sớm nhất sẽ nhận được quà từ **Ban tổ chức**.
 
 ![](https://mermaid.ink/img/pako:eNqVkbFuAjEMhl8l8gwvkK0VK12qblmsi--IlEuQ4xSh494dQ0A99RbwEvt3ZH32P0GXPYEF4l3AgXF0yWj8FGJzuWy3eTKfMQ_WVFVcWnSnlt8iJDHB_9VFOKTB9DXGLxxp1aARQ1yp-IuCvJKPWMop82L8DoVMx6SP_5B_ej36ppvWmJ_QtzVegJYgcU3c5SSU5F2GBQJsYCTWxb1e-47hQA6k1wGrqaceaxQHLs36Favk73PqwApX2kCb-LAIbI-xqEo-SOZ9c_Bu5HwF0-aPEw?type=png)
 
@@ -62,4 +62,4 @@ Các bạn có thể test API bằng một trong 2 cách:
 
 ### Chấm điểm
 
-Sau khi đã viết xong các hàm được yêu cầu ở trên, các bạn sẽ chạy file test để chấm điểm (`test.java.com.zit.blog.ServerApplicationTests`). Các bạn pass hết test case sớm nhất sẽ nhận được quà từ **ZIT**.
+Sau khi đã viết xong các hàm được yêu cầu ở trên, các bạn sẽ chạy file test để chấm điểm (`test.java.com.zit.blog.ServerApplicationTests`). Các bạn pass hết test case sớm nhất sẽ nhận được quà từ **Ban tổ chức**.
