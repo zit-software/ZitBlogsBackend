@@ -24,6 +24,6 @@ springdoc.swagger-ui.path=/swagger-ui.html
 # WORKSHOP
 # ===============================
 app.blog.test.name=
-spring.datasource.url=
+spring.datasource.url=jdbc:mysql://zitdb.mysql.database.azure.com:3306/zitblogs
 spring.datasource.username=
 spring.datasource.password=
