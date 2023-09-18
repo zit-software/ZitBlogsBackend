@@ -5,6 +5,7 @@ import com.zit.blog.Blog.DTO.UpdateBlogDTO;
 import com.zit.blog.User.User;
 import com.zit.blog.config.exception.CustomException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class BlogService {
          * 1. Sử dụng `blogRepository` để lấy ra danh sách các blog
          */
 
-        return null;
+        return blogRepository.findAll();
     }
 
     public Blog getOneBlog(Long id) throws CustomException {
@@ -41,7 +42,8 @@ public class BlogService {
          * 1. Sử dụng `blogRepository` để tương tác với database
          */
 
-        return null;
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Không tìm thấy blog", HttpStatus.NOT_FOUND));
     }
 
     public Blog createNewBlog(CreateBlogDTO createBlogDTO) {
@@ -56,7 +58,15 @@ public class BlogService {
          * 4. Sử dụng `blogRepository.save` để lưu blog vào database
          */
 
-        return null;
+        User user = getCurrentLoginUser();
+
+        Blog newBlog = Blog.builder()
+                .title(createBlogDTO.getTitle())
+                .content(createBlogDTO.getContent())
+                .user(user)
+                .build();
+
+        return blogRepository.save(newBlog);
     }
 
     public Blog updateBlog(Long blogId, UpdateBlogDTO updateBlogDTO) throws CustomException {
@@ -71,7 +81,19 @@ public class BlogService {
          * 2. Dùng hàm `getCurrentLoginUser` để lấy ra user hiện tại
          */
 
-        return null;
+        Blog existingBlog = blogRepository.findById(blogId)
+                .orElseThrow(() -> new CustomException("Không tìm thấy blog", HttpStatus.NOT_FOUND));
+
+        User user = getCurrentLoginUser();
+
+        if (!existingBlog.getUser().getId().equals(user.getId())) {
+            throw new CustomException("Bạn không có quyền chỉnh sửa blog này", HttpStatus.FORBIDDEN);
+        }
+
+        existingBlog.setTitle(updateBlogDTO.getTitle());
+        existingBlog.setContent(updateBlogDTO.getContent());
+
+        return blogRepository.save(existingBlog);
     }
 
     public void deleteBlog(Long blogId) {
